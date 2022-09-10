@@ -21,3 +21,5 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger
+  override-with-generic-response: false
+  writer-with-order-by-keys: true

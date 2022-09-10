@@ -20,8 +20,8 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
-        int rows = entityManager.createQuery("SELECT count(id) FROM User").getFirstResult();
-        if (rows == 0) {
+        Long obj = (Long) entityManager.createQuery("SELECT count(id) FROM User").getSingleResult();
+        if (obj == 0) {
             ResourceDatabasePopulator rdp = new ResourceDatabasePopulator();
             rdp.addScript(new ClassPathResource("sql/data.sql"));
             rdp.execute(dataSource);
