@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,4 +28,9 @@ public class User extends BaseEntity {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
+    @ManyToMany(mappedBy = "students")
+    private List<Course> coursesAsStudent;
+
+    @ManyToMany(mappedBy = "teachers")
+    private List<Course> coursesAsTeacher;
 }

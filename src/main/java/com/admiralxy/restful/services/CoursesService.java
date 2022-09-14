@@ -16,36 +16,37 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CoursesService implements ICoursesService {
 
-    private final CoursesRepository coursesRepository;
+    private final CoursesRepository repository;
 
     private final CoursesMapper mapper;
 
+
     public Page<CourseDto> findAll(int page, int size) {
-        return coursesRepository.findAll(PageRequest.of(page, size)).map(mapper::toDto);
+        return repository.findAll(PageRequest.of(page, size)).map(mapper::toDto);
     }
 
     public CourseDto save(CourseCreateDto course) {
         Course toCreate = mapper.toEntity(course);
-        return mapper.toDto(coursesRepository.save(toCreate));
+        return mapper.toDto(repository.save(toCreate));
     }
 
     public CourseDto findById(Long id) {
-        return coursesRepository.findById(id).map(mapper::toDto).orElseThrow(() ->
+        return repository.findById(id).map(mapper::toDto).orElseThrow(() ->
                 new NotFoundException("Course not found")
         );
     }
 
     public CourseDto update(Long id, CourseCreateDto course) {
-        if (!coursesRepository.existsById(id))
+        if (!repository.existsById(id))
             throw new NotFoundException("Course not found");
         Course toUpdate = mapper.toEntity(course);
         toUpdate.setId(id);
-        return mapper.toDto(coursesRepository.save(toUpdate));
+        return mapper.toDto(repository.save(toUpdate));
     }
 
     public void delete(Long id) {
-        if (!coursesRepository.existsById(id))
+        if (!repository.existsById(id))
             throw new NotFoundException("Course not found");
-        coursesRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }
