@@ -8,6 +8,7 @@ import com.admiralxy.restful.exceptions.NotFoundException;
 import com.admiralxy.restful.mappers.lessons.LessonsMapper;
 import com.admiralxy.restful.repositories.CoursesRepository;
 import com.admiralxy.restful.repositories.LessonsRepository;
+import com.admiralxy.restful.repositories.UsersRepository;
 import com.admiralxy.restful.services.interfaces.ILessonsService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,8 @@ public class LessonsService implements ILessonsService {
 
     private final LessonsRepository lessonsRepository;
 
+    private final UsersRepository usersRepository;
+
     private final LessonsMapper mapper;
 
     @Override
@@ -34,6 +37,7 @@ public class LessonsService implements ILessonsService {
     @Override
     public LessonDto saveByCourseId(Long courseId, LessonCreateDto lesson) {
         Course course = coursesRepository.findById(courseId).orElseThrow(() -> new NotFoundException("Course not found"));
+        usersRepository.findById(lesson.getTeacherId()).orElseThrow(() -> new NotFoundException("Teacher not found"));
         Lesson toCreate = mapper.toEntity(lesson);
         toCreate.setCourse(course);
         return mapper.toDto(lessonsRepository.save(toCreate));
@@ -42,6 +46,7 @@ public class LessonsService implements ILessonsService {
     @Override
     public LessonDto updateByCourseId(Long courseId, Long lessonId, LessonCreateDto lesson) {
         Course course = coursesRepository.findById(courseId).orElseThrow(() -> new NotFoundException("Course not found"));
+        usersRepository.findById(lesson.getTeacherId()).orElseThrow(() -> new NotFoundException("Teacher not found"));
         if (!lessonsRepository.existsById(lessonId))
             throw new NotFoundException("Lesson not found");
         Lesson toSave = mapper.toEntity(lesson);
