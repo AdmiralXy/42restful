@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./.h2db/restful;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9092;
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+  override-with-generic-response: false
+  writer-with-order-by-keys: true
