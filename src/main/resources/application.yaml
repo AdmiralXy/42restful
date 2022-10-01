@@ -16,6 +16,11 @@ spring:
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
+  security:
+    jwt:
+      token:
+        secret: 678252b45c54f89df0c0ac4af76b52436f65bcae1a8f90e8e50ad4352024be94
+        expired: 3600000
 springdoc:
   api-docs:
     path: /api-docs

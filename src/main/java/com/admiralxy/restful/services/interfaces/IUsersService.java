@@ -10,4 +10,5 @@ public interface IUsersService {
     UserDto findById(Long id);
     UserDto update(Long id, UserRegisterDto user);
     void delete(Long id);
+    UserDto findByLogin(String login);
 }

@@ -3,8 +3,7 @@ package com.admiralxy.restful.mappers.users;
 import com.admiralxy.restful.dto.users.UserDto;
 import com.admiralxy.restful.dto.users.UserRegisterDto;
 import com.admiralxy.restful.entities.User;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 @Mapper
 public interface UsersMapper {
