@@ -14,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
@@ -125,6 +126,7 @@ public class CoursesTests {
     }
 
     @Test
+    @WithMockUser(username = "user", roles={"ADMIN"})
     public void getAllCoursesTest() throws Exception {
         mockMvc.perform(get("/courses?page=0&size=5")).andDo(print())
                 .andExpect(status().isOk())
@@ -142,6 +144,7 @@ public class CoursesTests {
     }
 
     @Test
+    @WithMockUser(username = "user", roles={"ADMIN"})
     public void addCourseTest() throws Exception {
         mockMvc.perform(post("/courses")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -177,6 +180,7 @@ public class CoursesTests {
     }
 
     @Test
+    @WithMockUser(username = "user", roles={"ADMIN"})
     public void getCourseTest() throws Exception {
         mockMvc.perform(get("/courses/1")).andDo(print())
                 .andExpect(status().isOk())
@@ -191,6 +195,7 @@ public class CoursesTests {
     }
 
     @Test
+    @WithMockUser(username = "user", roles={"ADMIN"})
     public void updateCourseTest() throws Exception {
         mockMvc.perform(put("/courses/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -227,6 +232,7 @@ public class CoursesTests {
     }
 
     @Test
+    @WithMockUser(username = "user", roles={"ADMIN"})
     public void deleteCourseTest() throws Exception {
         mockMvc.perform(delete("/courses/1")).andDo(print())
                 .andExpect(status().isNoContent());
