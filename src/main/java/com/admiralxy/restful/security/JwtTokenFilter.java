@@ -1,6 +1,5 @@
 package com.admiralxy.restful.security;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -25,14 +24,11 @@ public class JwtTokenFilter extends GenericFilterBean {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
 
-        String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
+        String token = jwtTokenProvider.resolve((HttpServletRequest) req);
         try {
-            if (token != null && jwtTokenProvider.validateToken(token)) {
-                Authentication auth = jwtTokenProvider.getAuthentication(token);
-
-                if (auth != null) {
-                    SecurityContextHolder.getContext().setAuthentication(auth);
-                }
+            if (token != null) {
+                JwtAuthenticationToken auth = new JwtAuthenticationToken(token);
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
             filterChain.doFilter(req, res);
         } catch (AuthenticationException e) {

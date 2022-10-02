@@ -1,15 +1,8 @@
 package com.admiralxy.restful.security;
 
+import lombok.experimental.StandardException;
 import org.springframework.security.core.AuthenticationException;
 
+@StandardException
 public class JwtAuthenticationException extends AuthenticationException {
-
-    public JwtAuthenticationException(String msg, Throwable t) {
-        super(msg, t);
-    }
-
-    public JwtAuthenticationException(String msg) {
-        super(msg);
-    }
-
 }
