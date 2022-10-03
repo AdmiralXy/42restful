@@ -25,10 +25,11 @@ public class AuthService implements IAuthService {
     public BearerTokenDTO authenticate(UserLoginDto userDto) {
         User user = usersRepository.findByLogin(userDto.getLogin()).orElseThrow(() ->
                 new BadCredentialsException("User not found"));
-        String token = jwtTokenProvider.create(user.getId(), user.getLogin(), user.getRole().getName());
-        if (!passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
+
+        if (!passwordEncoder.matches(userDto.getPassword(), user.getPassword()))
             throw new BadCredentialsException("Invalid password");
-        }
+
+        String token = jwtTokenProvider.create(user.getId(), user.getLogin(), user.getRole().getName());
         return new BearerTokenDTO(token, jwtTokenProvider.getExpirationSeconds());
     }
 }
