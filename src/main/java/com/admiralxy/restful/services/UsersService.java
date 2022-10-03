@@ -28,6 +28,7 @@ public class UsersService implements IUsersService {
         return repository.findAll(PageRequest.of(page, size)).map(mapper::toDto);
     }
 
+    @Override
     public UserDto save(UserRegisterDto user) {
         User toCreate = mapper.toEntity(user);
         if (toCreate.getRole().getId() < 1 || toCreate.getRole().getId() > 3) {
@@ -37,12 +38,13 @@ public class UsersService implements IUsersService {
         return mapper.toDto(repository.save(toCreate));
     }
 
+    @Override
     public UserDto findById(Long id) {
         return repository.findById(id).map(mapper::toDto).orElseThrow(() ->
-                new NotFoundException("User not found")
-        );
+                new NotFoundException("User not found"));
     }
 
+    @Override
     public UserDto update(Long id, UserRegisterDto user) {
         if (!repository.existsById(id))
             throw new NotFoundException("User not found");
@@ -52,6 +54,7 @@ public class UsersService implements IUsersService {
         return mapper.toDto(repository.save(toUpdate));
     }
 
+    @Override
     public void delete(Long id) {
         if (!repository.existsById(id))
             throw new NotFoundException("User not found");

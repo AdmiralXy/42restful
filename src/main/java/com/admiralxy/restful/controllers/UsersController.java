@@ -1,5 +1,6 @@
 package com.admiralxy.restful.controllers;
 
+import com.admiralxy.restful.controllers.interfaces.SecuredRestController;
 import com.admiralxy.restful.dto.users.UserDto;
 import com.admiralxy.restful.dto.users.UserRegisterDto;
 import com.admiralxy.restful.handlers.responses.ApiError;
@@ -19,7 +20,7 @@ import javax.validation.constraints.Min;
 @RestController
 @RequestMapping("users")
 @AllArgsConstructor
-public class UsersController {
+public class UsersController implements SecuredRestController {
 
     private IUsersService usersService;
 

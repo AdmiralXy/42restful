@@ -1,5 +1,6 @@
 package com.admiralxy.restful.controllers;
 
+import com.admiralxy.restful.controllers.interfaces.SecuredRestController;
 import com.admiralxy.restful.dto.courses.CourseCreateDto;
 import com.admiralxy.restful.dto.courses.CourseDto;
 import com.admiralxy.restful.dto.lessons.LessonCreateDto;
@@ -26,7 +27,7 @@ import javax.validation.constraints.Min;
 @RestController
 @RequestMapping("courses")
 @AllArgsConstructor
-public class CoursesController {
+public class CoursesController implements SecuredRestController {
 
     private final ICoursesService coursesService;
 
