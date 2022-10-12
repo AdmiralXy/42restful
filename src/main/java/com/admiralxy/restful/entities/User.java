@@ -1,10 +1,11 @@
 package com.admiralxy.restful.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +23,7 @@ public class User extends BaseEntity {
     private String login;
 
     @Column(name = "password", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -29,8 +31,6 @@ public class User extends BaseEntity {
     private Role role;
 
     @ManyToMany(mappedBy = "students")
-    private List<Course> coursesAsStudent;
+    private Set<Course> courses;
 
-    @ManyToMany(mappedBy = "teachers")
-    private List<Course> coursesAsTeacher;
 }
