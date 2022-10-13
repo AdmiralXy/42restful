@@ -16,9 +16,9 @@ VALUES ('Training center', 'Administrator', 'admin', '$2a$12$fTxDxH7FHPAPaP3kD61
        ('John', 'Marshall', 'joinsh', '$2a$12$fTxDxH7FHPAPaP3kD61rb.d1VessI.3Z2XfCWC6vWcLz9eXQ5H48a', 3);
 
 
-INSERT INTO courses (start_at, end_at, name, description)
-VALUES ('2023-07-01', '2023-12-31', 'SQL Basics', 'Course about the basics of the SQL language'),
-       ('2024-01-01', '2024-05-01', 'Java Advanced', 'Course about the advanced features of the Java language');
+INSERT INTO courses (start_at, end_at, name, description, state)
+VALUES ('2023-07-01', '2023-12-31', 'SQL Basics', 'Course about the basics of the SQL language', 'Published'),
+       ('2024-01-01', '2024-05-01', 'Java Advanced', 'Course about the advanced features of the Java language', 'Draft');
 
 INSERT INTO users_courses (user_id, course_id)
 VALUES (4, 1),

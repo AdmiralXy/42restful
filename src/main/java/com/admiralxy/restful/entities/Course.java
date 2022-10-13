@@ -25,6 +25,10 @@ public class Course extends BaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "state", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CourseState state;
+
     @OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Lesson> lessons;
 
