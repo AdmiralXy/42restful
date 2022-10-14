@@ -1,0 +1,32 @@
+= Course API
+Author - AdmiralXy
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:author: AdmiralXy
+
+[[courses_methods]]
+== Methods
+
+[[courses_publish]]
+=== Course publish
+
+You can publish a course with status *DRAFT*
+
+[[courses_publish_request]]
+==== Request
+
+include::{snippets}/courses-publish/http-request.adoc[]
+
+[[courses_publish_response]]
+==== Response
+
+include::{snippets}/courses-publish/http-response.adoc[]
+
+[[courses_publish_response_fields]]
+==== Response fields
+
+include::{snippets}/courses-publish/response-fields.adoc[]
