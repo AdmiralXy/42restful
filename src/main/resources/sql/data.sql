@@ -16,25 +16,19 @@ VALUES ('Training center', 'Administrator', 'admin', '$2a$12$fTxDxH7FHPAPaP3kD61
        ('John', 'Marshall', 'joinsh', '$2a$12$fTxDxH7FHPAPaP3kD61rb.d1VessI.3Z2XfCWC6vWcLz9eXQ5H48a', 3);
 
 
-INSERT INTO courses (start_at, end_at, name, description)
-VALUES ('2023-07-01', '2023-12-31', 'SQL Basics', 'Course about the basics of the SQL language'),
-       ('2024-01-01', '2024-05-01', 'Java Advanced', 'Course about the advanced features of the Java language');
+INSERT INTO courses (start_at, end_at, name, description, state)
+VALUES ('2023-07-01', '2023-12-31', 'SQL Basics', 'Course about the basics of the SQL language', 'Published'),
+       ('2024-01-01', '2024-05-01', 'Java Advanced', 'Course about the advanced features of the Java language', 'Draft');
 
-INSERT INTO courses_teachers
-VALUES (1, 2),
-       (1, 3),
-       (2, 3),
-       (2, 4);
-
-INSERT INTO courses_students
-VALUES (1, 4),
-       (1, 5),
-       (1, 6),
-       (1, 7),
-       (2, 7),
-       (2, 8),
-       (2, 9),
-       (2, 10);
+INSERT INTO users_courses (user_id, course_id)
+VALUES (4, 1),
+       (5, 1),
+       (6, 1),
+       (7, 1),
+       (7, 2),
+       (8, 2),
+       (9, 2),
+       (10, 2);
 
 INSERT INTO lessons (start_at, end_at, day_of_week, course_id, teacher_id)
 VALUES ('11:40', '13:20', 'Monday', 1, 2),
