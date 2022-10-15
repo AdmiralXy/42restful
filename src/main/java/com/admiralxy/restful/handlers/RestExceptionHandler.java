@@ -6,7 +6,6 @@ import com.admiralxy.restful.handlers.responses.ApiError;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,11 +28,5 @@ public class RestExceptionHandler {
     @ExceptionHandler({HttpMessageNotReadableException.class, TypeMismatchException.class, BindException.class})
     public ApiError handleBadRequest(Exception ignored) {
         return new ApiError(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase());
-    }
-
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler(AuthenticationException.class)
-    public ApiError handleForbiddenRequest(Exception ignored) {
-        return new ApiError(HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN.getReasonPhrase());
     }
 }
