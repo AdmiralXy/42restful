@@ -64,7 +64,7 @@ $> mvn clean
 
 <br/><br/>
 
-**HAL Browser - Home page**
+**HAL Browser - Course**
 
 <img src="screenshots/halbrowser-courses.png" width="100%"/>
 
